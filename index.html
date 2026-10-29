@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Artha — Her Economy | ಪ್ರಾಜೆಕ್ಟ್ ಅರ್ಥ</title>
+  <meta name="description" content="Practical financial literacy platform for women and young adults aligned with UN SDG 8.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-teal: #008F83;
+      --color-deep-teal: #006B63;
+      --color-pale-cream: #FFF9E8;
+      --color-lime: #D9EF58;
+      --color-dark-text: #24332F;
+      --color-muted: #526661;
+      --color-white: #FFFFFF;
+      --color-border: #E0E8E5;
+      --color-surface-tint: #F3F8F6;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-sm: 0 2px 4px rgba(36, 51, 47, 0.05);
+      --shadow-md: 0 4px 12px rgba(36, 51, 47, 0.08);
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-kannada: 'Noto Sans Kannada', var(--font-main);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      color: var(--color-dark-text);
+      background-color: var(--color-pale-cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.lang-kn {
+      font-family: var(--font-kannada);
+    }
+
+    a {
+      color: var(--color-teal);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: var(--color-white);
+      border-bottom: 2px solid var(--color-teal);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--color-deep-teal);
+    }
+
+    .brand-badge {
+      background-color: var(--color-lime);
+      color: var(--color-dark-text);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    nav ul li a {
+      color: var(--color-dark-text);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: var(--color-teal);
+      text-decoration: none;
+    }
+
+    .lang-switcher {
+      display: flex;
+      background: var(--color-surface-tint);
+      border: 1px solid var(--color-teal);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      padding: 0.35rem 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--color-dark-text);
+      transition: background 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--color-teal);
+      color: var(--color-white);
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--color-deep-teal);
+    }
+
+    /* Layout Containers */
+    main {
+      min-height: 80vh;
+    }
+
+    .page-section {
+      display: none;
+      padding: 3rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 1rem;
+    }
+
+    .section-header h1 {
+      font-size: 2.25rem;
+      color: var(--color-deep-teal);
+      line-height: 1.2;
+    }
+
+    .section-header p {
+      color: var(--color-muted);
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    /* UI Components: Cards & Buttons */
+    .card {
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, color 0.2s;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--color-teal);
+      color: var(--color-white);
+    }
+    .btn-primary:hover {
+      background: var(--color-deep-teal);
+      text-decoration: none;
+    }
+
+    .btn-accent {
+      background: var(--color-lime);
+      color: var(--color-dark-text);
+    }
+    .btn-accent:hover {
+      filter: brightness(0.95);
+      text-decoration: none;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--color-teal);
+      color: var(--color-teal);
+    }
+    .btn-outline:hover {
+      background: var(--color-surface-tint);
+      text-decoration: none;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--color-white) 0%, var(--color-pale-cream) 100%);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 2.5rem;
+      margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 2.75rem;
+      color: var(--color-deep-teal);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: var(--color-dark-text);
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-banner-visual {
+      background: var(--color-surface-tint);
+      border: 2px dashed var(--color-teal);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    /* Learning Module Accordion/Cards */
+    .module-card {
+      border-left: 4px solid var(--color-teal);
+      margin-bottom: 1.5rem;
+    }
+
+    .module-card h3 {
+      color: var(--color-deep-teal);
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .module-card ul {
+      margin-left: 1.5rem;
+      margin-top: 0.75rem;
+      color: var(--color-dark-text);
+    }
+
+    .module-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.25rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* Calculators System */
+    .calc-wrapper {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .calc-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: var(--color-white);
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .calc-tab-btn {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: transparent;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--color-dark-text);
+      transition: background 0.2s;
+    }
+
+    .calc-tab-btn.active {
+      background: var(--color-teal);
+      color: var(--color-white);
+    }
+
+    .calc-pane {
+      display: none;
+      background: var(--color-white);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .calc-pane.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--color-dark-text);
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--color-dark-text);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--color-teal);
+    }
+
+    .calc-results {
+      background: var(--color-surface-tint);
+      border-left: 4px solid var(--color-lime);
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      margin-top: 1.5rem;
+    }
+
+    .calc-results h4 {
+      color: var(--color-deep-teal);
+      margin-bottom: 0.75rem;
+      font-size: 1.15rem;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      font-size: 1rem;
+      border-bottom: 1px dashed var(--color-border);
+    }
+
+    .result-row.highlight {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--color-deep-teal);
+      border-bottom: none;
+      padding-top: 0.75rem;
+    }
+
+    .formula-explanation {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      border-top: 1px solid var(--color-border);
+      padding-top: 0.75rem;
+    }
+
+    /* Quiz Component */
+    .quiz-container {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .quiz-question {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: var(--color-deep-teal);
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .quiz-option-btn {
+      text-align: left;
+      padding: 1rem;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-white);
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .quiz-option-btn:hover {
+      background: var(--color-surface-tint);
+    }
+
+    .quiz-option-btn.correct {
+      border-color: #2e7d32;
+      background: #e8f5e9;
+      font-weight: 700;
+    }
+
+    .quiz-option-btn.incorrect {
+      border-color: #c62828;
+      background: #ffebee;
+    }
+
+    .quiz-feedback {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+
+    /* Checklists */
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      padding: 0.5rem;
+      background: var(--color-white);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+
+    .checklist-item input[type="checkbox"] {
+      margin-top: 0.3rem;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-teal);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--color-dark-text);
+      color: var(--color-white);
+      padding: 3rem 1.5rem 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand h3 {
+      color: var(--color-lime);
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-brand p {
+      color: #A3B8B2;
+      font-size: 0.95rem;
+      max-width: 450px;
+    }
+
+    .footer-links h4 {
+      color: var(--color-white);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links ul li a {
+      color: #C2D6D0;
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
+
+    .footer-links ul li a:hover {
+      color: var(--color-lime);
+    }
+
+    .disclaimer-banner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.25rem;
+      background: #182320;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      color: #A3B8B2;
+      line-height: 1.5;
+    }
+
+    /* Responsive */
+    @media (max-width: 868px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.5rem;
+      }
+      .grid-4, .grid-3, .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .calc-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--color-white);
+        padding: 1.5rem;
+        border-bottom: 2px solid var(--color-teal);
+        box-shadow: var(--shadow-md);
+      }
+      nav ul.show {
+        display: flex;
+      }
+      .mobile-menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body class="lang-en">
+
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <div class="brand-logo">
+        <span>PROJECT ARTHA</span>
+        <span class="brand-badge">SDG 8</span>
+      </div>
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation">☰</button>
+      <nav>
+        <ul id="navLinks">
+          <li><a href="#home" class="nav-link active" data-target="home" data-i18n="nav_home">Home</a></li>
+          <li><a href="#learn" class="nav-link" data-target="learn" data-i18n="nav_learn">Learn</a></li>
+          <li><a href="#calculators" class="nav-link" data-target="calculators" data-i18n="nav_calculators">Calculators</a></li>
+          <li><a href="#resources" class="nav-link" data-target="resources" data-i18n="nav_resources">Resources</a></li>
+          <li><a href="#about" class="nav-link" data-target="about" data-i18n="nav_about">About</a></li>
+          <li><a href="#survey" class="nav-link" data-target="survey" data-i18n="nav_survey">Survey</a></li>
+        </ul>
+      </nav>
+      <div class="lang-switcher">
+        <button class="lang-btn active" id="btnEn" onclick="setLanguage('en')">English</button>
+        <button class="lang-btn" id="btnKn" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECTION 1: HOME -->
+    <section id="home" class="page-section active">
+      <div class="hero">
+        <div class="hero-content">
+          <h1 data-i18n="hero_title">Financial confidence begins with understanding.</h1>
+          <p data-i18n="hero_subtitle">Practical financial education, simple tools, and accessible resources to help you budget, save, plan, and make more informed everyday financial decisions.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="navigateTo('learn')" data-i18n="cta_start_learning">Start Learning</button>
+            <button class="btn btn-accent" onclick="navigateTo('calculators')" data-i18n="cta_try_calc">Try a Calculator</button>
+            <button class="btn btn-outline" onclick="navigateTo('resources')" data-i18n="cta_explore_resources">Explore Resources</button>
+          </div>
+        </div>
+        <div class="hero-banner-visual">
+          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌱 ➔ 💼 ➔ 🛡️</div>
+          <h4 data-i18n="hero_badge_title">Independent & Practical</h4>
+          <p style="font-size: 0.9rem; color: var(--color-muted);" data-i18n="hero_badge_desc">Tailored for women and young adults navigating personal and micro-business finances in Karnataka.</p>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h2 data-i18n="home_pillars_title">How Project Artha Helps</h2>
+        <p data-i18n="home_pillars_subtitle">Core areas of focus built into our open financial education toolkit.</p>
+      </div>
+
+      <div class="grid-4" style="margin-bottom: 3rem;">
+        <div class="card">
+          <h3 style="color: var(--color-deep-teal); margin-bottom: 0.5rem;">📊 <span data-i18n="card_budgeting_title">Budgeting & Cash Flow</span></h3>
+          <p style="font-size: 0.95rem; color: var(--color-muted);" data-i18n="card_budgeting_desc">Master fixed vs. variable spending and build stability even with irregular monthly earnings.</p>
+        </div>
+        <div class="card">
+          <h3 style="color: var(--color-deep-teal); margin-bottom: 0.5rem;">🛡️ <span data-i18n="card_savings_title">Savings & Safety Nets</span></h3>
+          <p style="font-size: 0.95rem; color: var(--color-muted);" data-i18n="card_savings_desc">Calculate emergency targets and establish realistic timelines for rainy-day security.</p>
+        </div>
+        <div class="card">
+          <h3 style="color: var(--color-deep-teal); margin-bottom: 0.5rem;">⚖️ <span data-i18n="card_loans_title">Loans & True Costs</span></h3>
+          <p style="font-size: 0.95rem; color: var(--color-muted);" data-i18n="card_loans_desc">Unpack flat rates vs. reducing balance EMIs and compare borrowing offers without confusion.</p>
+        </div>
+        <div class="card">
+          <h3 style="color: var(--color-deep-teal); margin-bottom: 0.5rem;">📱 <span data-i18n="card_safety_title">Digital Payment Safety</span></h3>
+          <p style="font-size: 0.95rem; color: var(--color-muted);" data-i18n="card_safety_desc">Understand UPI protections, verify scams, and memorize the golden rule: never enter a PIN to receive funds.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: LEARN -->
+    <section id="learn" class="page-section">
+      <div class="section-header">
+        <h1 data-i18n="learn_title">Learning Centre</h1>
+        <p data-i18n="learn_subtitle">Structured, jargon-free lessons designed for immediate everyday application.</p>
+      </div>
+
+      <div class="module-card card">
+        <h3 data-i18n="module_a_title">Module A: Understanding Money & Needs vs. Wants</h3>
+        <p data-i18n="module_a_body">Financial literacy is the skill of using money intentionally. Needs are non-negotiable living expenses (rent, dal, rice, basic medicine). Wants enhance life but can be deferred (dining out, fashion upgrades). Reviewing expenses without self-judgement allows you to identify where money leaks occur.</p>
+        <div class="module-meta">
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-teal);" data-i18n="module_a_tag">Essential Foundation</span>
+          <button class="btn btn-outline" onclick="navigateTo('calculators', 'budgetPlanner')" data-i18n="btn_use_tool">Open Budget Planner</button>
+        </div>
+      </div>
+
+      <div class="module-card card">
+        <h3 data-i18n="module_b_title">Module B: Budgeting with Regular or Irregular Income</h3>
+        <p data-i18n="module_b_body">If your monthly income fluctuates (freelancing, gig work, tailoring, seasonal agricultural trading), budget using your lowest earning month from the past 6 months as your baseline. Any surplus in peak months must flow into an income-buffer account to protect low-income cycles.</p>
+        <div class="module-meta">
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-teal);" data-i18n="module_b_tag">Cash-Flow Planning</span>
+          <button class="btn btn-outline" onclick="navigateTo('calculators', 'irregularIncome')" data-i18n="btn_use_tool_irregular">Open Irregular Income Planner</button>
+        </div>
+      </div>
+
+      <div class="module-card card">
+        <h3 data-i18n="module_c_title">Module C: Emergency Funds & Safe Saving</h3>
+        <p data-i18n="module_c_body">An emergency fund is strictly for unexpected crises: sudden medical events, vehicle repair needed for livelihood, or temporary job loss. A realistic baseline target is 3 to 6 months of essential living costs kept in accessible, risk-free savings accounts or liquid recurring deposits.</p>
+        <div class="module-meta">
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-teal);" data-i18n="module_c_tag">Risk Protection</span>
+          <button class="btn btn-outline" onclick="navigateTo('calculators', 'emergencyFund')" data-i18n="btn_use_tool_fund">Calculate Emergency Target</button>
+        </div>
+      </div>
+
+      <div class="module-card card">
+        <h3 data-i18n="module_d_title">Module D: Demystifying Loans, EMIs & Borrowing Traps</h3>
+        <p data-i18n="module_d_body">Never evaluate a loan on monthly EMI alone. Lenders quoting a "flat interest rate" of 10% actually charge nearly 18% on a reducing-balance basis because you continue paying interest on money you already returned. Always demand the Total Cost of Borrowing including processing fees and GST.</p>
+        <div class="module-meta">
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-teal);" data-i18n="module_d_tag">Debt Management</span>
+          <button class="btn btn-outline" onclick="navigateTo('calculators', 'loanEmi')" data-i18n="btn_use_tool_emi">Compare Loan EMIs</button>
+        </div>
+      </div>
+
+      <div class="module-card card">
+        <h3 data-i18n="module_e_title">Module E: Digital Payment Safety & Fraud Prevention</h3>
+        <p data-i18n="module_e_body">Crucial rule of UPI: You NEVER need to enter your UPI PIN, scan a QR code, or approve a collect request to RECEIVE money. Entering your PIN always debits money from your account. If defrauded, dial 1930 immediately or log on to cybercrime.gov.in within 2 hours to freeze illicit transfers.</p>
+        <div class="module-meta">
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-teal);" data-i18n="module_e_tag">Official Cyber Safety</span>
+          <a href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="btn_visit_portal">National Cyber Portal (1930)</a>
+        </div>
+      </div>
+
+      <!-- Quick Quiz Box -->
+      <div style="margin-top: 3rem;">
+        <div class="section-header">
+          <h2 data-i18n="quiz_heading">Test Your Knowledge</h2>
+          <p data-i18n="quiz_subheading">Check your understanding of basic financial traps and principles.</p>
+        </div>
+        <div class="quiz-container" id="quizContainer">
+          <div class="quiz-question" id="quizQuestion" data-i18n="quiz_q1">When a buyer wants to send you money through UPI, do you need to enter your UPI PIN?</div>
+          <div class="quiz-options">
+            <button class="quiz-option-btn" onclick="handleQuizAnswer(0)" data-i18n="quiz_q1_op1">Yes, to confirm you accept the incoming payment.</button>
+            <button class="quiz-option-btn" onclick="handleQuizAnswer(1)" data-i18n="quiz_q1_op2">No, UPI PIN is strictly used to authorise outgoing payments.</button>
+            <button class="quiz-option-btn" onclick="handleQuizAnswer(2)" data-i18n="quiz_q1_op3">Only if the amount is greater than ₹2,000.</button>
+          </div>
+          <div class="quiz-feedback" id="quizFeedback"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: CALCULATORS -->
+    <section id="calculators" class="page-section">
+      <div class="section-header">
+        <h1 data-i18n="calc_main_title">Financial Calculators</h1>
+        <p data-i18n="calc_main_subtitle">Accurate client-side calculation tools tailored to Indian financial scenarios.</p>
+      </div>
+
+      <div class="calc-wrapper">
+        <div class="calc-tabs">
+          <button class="calc-tab-btn active" onclick="switchCalc('budgetPlanner')" data-i18n="tab_budget">Monthly Budget</button>
+          <button class="calc-tab-btn" onclick="switchCalc('irregularIncome')" data-i18n="tab_irregular">Irregular Income</button>
+          <button class="calc-tab-btn" onclick="switchCalc('emergencyFund')" data-i18n="tab_emergency">Emergency Fund</button>
+          <button class="calc-tab-btn" onclick="switchCalc('loanEmi')" data-i18n="tab_emi">Loan EMI</button>
+          <button class="calc-tab-btn" onclick="switchCalc('loanCompare')" data-i18n="tab_compare">Loan Comparison</button>
+          <button class="calc-tab-btn" onclick="switchCalc('compoundInterest')" data-i18n="tab_compound">Compound Growth</button>
+          <button class="calc-tab-btn" onclick="switchCalc('inflationCalc')" data-i18n="tab_inflation">Inflation Impact</button>
+          <button class="calc-tab-btn" onclick="switchCalc('savingsGoal')" data-i18n="tab_goal">Savings Goal</button>
+        </div>
+
+        <div class="calc-content-area">
+          <!-- Calc 1: Monthly Budget -->
+          <div id="calc_budgetPlanner" class="calc-pane active">
+            <h3 data-i18n="calc1_title">Monthly Budget Planner</h3>
+            <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 1.5rem;" data-i18n="calc1_desc">Map your income and expenses to ensure cash flow positivity.</p>
+            <div class="grid-2">
+              <div class="form-group">
+                <label data-i18n="lbl_take_home_inc">Monthly Take-Home Income (₹)</label>
+                <input type="number" id="b_income" value="30000" min="0" oninput="runBudgetCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_housing_util">Housing & Utilities (₹)</label>
+                <input type="number" id="b_housing" value="10000" min="0" oninput="runBudgetCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_food_groceries">Food & Groceries (₹)</label>
+                <input type="number" id="b_food" value="7000" min="0" oninput="runBudgetCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_transport_health">Transport & Healthcare (₹)</label>
+                <input type="number" id="b_essential" value="4000" min="0" oninput="runBudgetCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_debt_emi">Debt / EMIs / Chits (₹)</label>
+                <input type="number" id="b_debt" value="3000" min="0" oninput="runBudgetCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_personal_other">Discretionary / Other (₹)</label>
+                <input type="number" id="b_other" value="2000" min="0" oninput="runBudgetCalc()">
+              </div>
+            </div>
+            <div class="calc-results">
+              <h4 data-i18n="res_summary">Budget Breakdown</h4>
+              <div class="result-row"><span data-i18n="res_total_inc">Total Income:</span> <span id="b_res_inc">₹30,000</span></div>
+              <div class="result-row"><span data-i18n="res_total_exp">Total Expenses:</span> <span id="b_res_exp">₹26,000</span></div>
+              <div class="result-row highlight"><span data-i18n="res_surplus">Net Savings / Surplus:</span> <span id="b_res_surplus">₹4,000</span></div>
+              <div class="result-row"><span data-i18n="res_savings_rate">Savings Ratio:</span> <span id="b_res_rate">13.3%</span></div>
+            </div>
+          </div>
+
+          <!-- Calc 2: Irregular Income -->
+          <div id="calc_irregularIncome" class="calc-pane">
+            <h3 data-i18n="calc2_title">Irregular-Income Budget Planner</h3>
+            <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 1.5rem;" data-i18n="calc2_desc">Calculate baseline survival budgets using recent minimum earnings.</p>
+            <div class="grid-3">
+              <div class="form-group">
+                <label data-i18n="lbl_m1">Month 1 Income (₹)</label>
+                <input type="number" id="irr_m1" value="25000" oninput="runIrregularCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_m2">Month 2 Income (₹)</label>
+                <input type="number" id="irr_m2" value="18000" oninput="runIrregularCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_m3">Month 3 Income (₹)</label>
+                <input type="number" id="irr_m3" value="32000" oninput="runIrregularCalc()">
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="lbl_bare_expenses">Bare Essential Monthly Expenses (Rent, Food, Minimum EMIs) (₹)</label>
+              <input type="number" id="irr_essentials" value="20000" oninput="runIrregularCalc()">
+            </div>
+            <div class="calc-results">
+              <h4 data-i18n="res_summary">Irregular Analysis</h4>
+              <div class="result-row"><span data-i18n="res_avg_inc">Average Monthly Income:</span> <span id="irr_res_avg">₹25,000</span></div>
+              <div class="result-row"><span data-i18n="res_lowest_inc">Lowest Month (Safety Baseline):</span> <span id="irr_res_low">₹18,000</span></div>
+              <div class="result-row highlight"><span data-i18n="res_gap">Baseline Deficit / Buffer:</span> <span id="irr_res_gap">-₹2,000</span></div>
+              <p style="font-size: 0.85rem; margin-top: 0.5rem; color: var(--color-muted);" id="irr_res_note"></p>
+            </div>
+          </div>
+
+          <!-- Calc 3: Emergency Fund -->
+          <div id="calc_emergencyFund" class="calc-pane">
+            <h3 data-i18n="calc3_title">Emergency-Fund Target Calculator</h3>
+            <div class="grid-2">
+              <div class="form-group">
+                <label data-i18n="lbl_monthly_essentials">Monthly Essential Living Expenses (₹)</label>
+                <input type="number" id="ef_expenses" value="22000" oninput="runEmergencyCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_months_target">Target Coverage (Months)</label>
+                <select id="ef_months" onchange="runEmergencyCalc()">
+                  <option value="3">3 Months (Standard)</option>
+                  <option value="6" selected>6 Months (Recommended)</option>
+                  <option value="9">9 Months (High Income Volatility)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_current_savings">Current Dedicated Emergency Savings (₹)</label>
+                <input type="number" id="ef_current" value="30000" oninput="runEmergencyCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_monthly_contrib">Monthly Contribution Possible (₹)</label>
+                <input type="number" id="ef_contrib" value="5000" oninput="runEmergencyCalc()">
+              </div>
+            </div>
+            <div class="calc-results">
+              <div class="result-row highlight"><span data-i18n="res_target_fund">Target Emergency Fund:</span> <span id="ef_res_target">₹1,32,000</span></div>
+              <div class="result-row"><span data-i18n="res_shortfall">Remaining Shortfall:</span> <span id="ef_res_shortfall">₹1,02,000</span></div>
+              <div class="result-row"><span data-i18n="res_time_needed">Months to Reach Goal:</span> <span id="ef_res_time">21 Months</span></div>
+            </div>
+          </div>
+
+          <!-- Calc 4: Loan EMI -->
+          <div id="calc_loanEmi" class="calc-pane">
+            <h3 data-i18n="calc4_title">Loan EMI Calculator (Reducing Balance)</h3>
+            <div class="grid-3">
+              <div class="form-group">
+                <label data-i18n="lbl_principal">Principal Loan Amount (₹)</label>
+                <input type="number" id="emi_principal" value="200000" oninput="runEmiCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_interest_rate">Annual Interest Rate (%)</label>
+                <input type="number" id="emi_rate" value="12" step="0.1" oninput="runEmiCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_tenure_months">Tenure (Months)</label>
+                <input type="number" id="emi_tenure" value="24" oninput="runEmiCalc()">
+              </div>
+            </div>
+            <div class="calc-results">
+              <div class="result-row highlight"><span data-i18n="res_monthly_emi">Monthly EMI:</span> <span id="emi_res_val">₹9,415</span></div>
+              <div class="result-row"><span data-i18n="res_total_interest">Total Interest Payable:</span> <span id="emi_res_int">₹25,953</span></div>
+              <div class="result-row"><span data-i18n="res_total_repayment">Total Repayment Amount:</span> <span id="emi_res_total">₹2,25,953</span></div>
+            </div>
+            <div class="formula-explanation" data-i18n="calc4_formula_note">Formula: EMI = [P × r × (1 + r)^n] / [(1 + r)^n − 1] where r is monthly interest.</div>
+          </div>
+
+          <!-- Calc 5: Loan Comparison -->
+          <div id="calc_loanCompare" class="calc-pane">
+            <h3 data-i18n="calc5_title">Loan Comparison Tool</h3>
+            <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 1.5rem;" data-i18n="calc5_desc">Compare two loan terms side by side to see the true cost difference.</p>
+            <div class="grid-2">
+              <div style="border: 1px solid var(--color-border); padding: 1rem; border-radius: var(--radius-sm);">
+                <h4 style="color: var(--color-teal); margin-bottom: 0.5rem;" data-i18n="opt_a">Option A</h4>
+                <div class="form-group"><label>Principal (₹)</label><input type="number" id="cmp_p1" value="100000" oninput="runCompareCalc()"></div>
+                <div class="form-group"><label>Rate (% p.a.)</label><input type="number" id="cmp_r1" value="11" oninput="runCompareCalc()"></div>
+                <div class="form-group"><label>Tenure (Months)</label><input type="number" id="cmp_t1" value="24" oninput="runCompareCalc()"></div>
+              </div>
+              <div style="border: 1px solid var(--color-border); padding: 1rem; border-radius: var(--radius-sm);">
+                <h4 style="color: var(--color-teal); margin-bottom: 0.5rem;" data-i18n="opt_b">Option B</h4>
+                <div class="form-group"><label>Principal (₹)</label><input type="number" id="cmp_p2" value="100000" oninput="runCompareCalc()"></div>
+                <div class="form-group"><label>Rate (% p.a.)</label><input type="number" id="cmp_r2" value="14" oninput="runCompareCalc()"></div>
+                <div class="form-group"><label>Tenure (Months)</label><input type="number" id="cmp_t2" value="24" oninput="runCompareCalc()"></div>
+              </div>
+            </div>
+            <div class="calc-results">
+              <div class="result-row"><span data-i18n="res_total_a">Option A Total Cost:</span> <span id="cmp_res_a">₹1,11,812</span></div>
+              <div class="result-row"><span data-i18n="res_total_b">Option B Total Cost:</span> <span id="cmp_res_b">₹1,15,190</span></div>
+              <div class="result-row highlight"><span data-i18n="res_cost_diff">Potential Savings choosing Option A:</span> <span id="cmp_res_diff">₹3,378</span></div>
+            </div>
+          </div>
+
+          <!-- Calc 6: Compound Interest -->
+          <div id="calc_compoundInterest" class="calc-pane">
+            <h3 data-i18n="calc6_title">Savings & Compound Interest Calculator</h3>
+            <div class="grid-3">
+              <div class="form-group">
+                <label data-i18n="lbl_initial_deposit">Initial Deposit (₹)</label>
+                <input type="number" id="ci_principal" value="10000" oninput="runCompoundCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_monthly_savings">Monthly Addition (₹)</label>
+                <input type="number" id="ci_monthly" value="2000" oninput="runCompoundCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_interest_rate_return">Expected Rate (% p.a.)</label>
+                <input type="number" id="ci_rate" value="7" oninput="runCompoundCalc()">
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="lbl_period_years">Period (Years)</label>
+              <input type="number" id="ci_years" value="5" min="1" max="30" oninput="runCompoundCalc()">
+            </div>
+            <div class="calc-results">
+              <div class="result-row"><span data-i18n="res_total_invested">Total Contributed:</span> <span id="ci_res_inv">₹1,30,000</span></div>
+              <div class="result-row"><span data-i18n="res_interest_earned">Interest / Growth:</span> <span id="ci_res_interest">₹28,680</span></div>
+              <div class="result-row highlight"><span data-i18n="res_future_corpus">Estimated Future Balance:</span> <span id="ci_res_total">₹1,58,680</span></div>
+            </div>
+          </div>
+
+          <!-- Calc 7: Inflation -->
+          <div id="calc_inflationCalc" class="calc-pane">
+            <h3 data-i18n="calc7_title">Inflation & Purchasing Power Calculator</h3>
+            <div class="grid-3">
+              <div class="form-group">
+                <label data-i18n="lbl_current_cost">Current Cost of Item/Goal (₹)</label>
+                <input type="number" id="inf_amount" value="50000" oninput="runInflationCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_inflation_rate">Assumed Inflation Rate (% p.a.)</label>
+                <input type="number" id="inf_rate" value="6" oninput="runInflationCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_years_ahead">Years in Future</label>
+                <input type="number" id="inf_years" value="10" oninput="runInflationCalc()">
+              </div>
+            </div>
+            <div class="calc-results">
+              <div class="result-row highlight"><span data-i18n="res_future_equiv">Future Cost Equivalent:</span> <span id="inf_res_future">₹89,542</span></div>
+              <div class="result-row"><span data-i18n="res_purchasing_power">What ₹50,000 will be worth then:</span> <span id="inf_res_power">₹27,919</span></div>
+            </div>
+          </div>
+
+          <!-- Calc 8: Savings Goal -->
+          <div id="calc_savingsGoal" class="calc-pane">
+            <h3 data-i18n="calc8_title">Savings-Goal Planner</h3>
+            <div class="grid-3">
+              <div class="form-group">
+                <label data-i18n="lbl_goal_amount">Target Amount (₹)</label>
+                <input type="number" id="sg_target" value="100000" oninput="runGoalCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_sg_current">Current Savings (₹)</label>
+                <input type="number" id="sg_current" value="20000" oninput="runGoalCalc()">
+              </div>
+              <div class="form-group">
+                <label data-i18n="lbl_timeframe_m">Timeframe (Months)</label>
+                <input type="number" id="sg_months" value="16" min="1" oninput="runGoalCalc()">
+              </div>
+            </div>
+            <div class="calc-results">
+              <div class="result-row"><span data-i18n="res_remaining_save">Remaining Gap:</span> <span id="sg_res_gap">₹80,000</span></div>
+              <div class="result-row highlight"><span data-i18n="res_monthly_required">Monthly Savings Needed:</span> <span id="sg_res_monthly">₹5,000 / month</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: RESOURCES -->
+    <section id="resources" class="page-section">
+      <div class="section-header">
+        <h1 data-i18n="res_page_title">Educational Guides & Worksheets</h1>
+        <p data-i18n="res_page_subtitle">Direct downloadable resources prepared in simple Kannada and English. Free for public use.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <span style="font-size: 0.8rem; background: var(--color-lime); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">PDF GUIDE</span>
+          <h3 style="margin-top: 0.5rem; color: var(--color-deep-teal);" data-i18n="res_guide_title">Project Artha Financial Literacy Handbook (ಕನ್ನಡ)</h3>
+          <p style="color: var(--color-muted); font-size: 0.95rem; margin-bottom: 1rem;" data-i18n="res_guide_desc">The complete illustrated handbook introducing foundational budgeting, safe credit practices, and household money management.</p>
+          <a href="./assets/Project_Artha_Guide_Kannada.pdf" class="btn btn-primary" download data-i18n="btn_download_pdf">Download PDF (ಕನ್ನಡ)</a>
+        </div>
+
+        <div class="card">
+          <span style="font-size: 0.8rem; background: var(--color-lime); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">WORKSHEET</span>
+          <h3 style="margin-top: 0.5rem; color: var(--color-deep-teal);" data-i18n="res_ws_budget_title">Monthly Household Budget Template (ಕನ್ನಡ)</h3>
+          <p style="color: var(--color-muted); font-size: 0.95rem; margin-bottom: 1rem;" data-i18n="res_ws_budget_desc">Printable double-column expense tracking worksheet tailored for Kannada-speaking households and self-employed women.</p>
+          <a href="./assets/Budget_Worksheet_Kannada.pdf" class="btn btn-outline" download data-i18n="btn_download_ws">Download Worksheet</a>
+        </div>
+
+        <div class="card">
+          <span style="font-size: 0.8rem; background: var(--color-lime); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">CHECKLIST</span>
+          <h3 style="margin-top: 0.5rem; color: var(--color-deep-teal);" data-i18n="res_chk_loan_title">Borrowing & Loan Evaluation Checklist</h3>
+          <p style="color: var(--color-muted); font-size: 0.95rem; margin-bottom: 1rem;" data-i18n="res_chk_loan_desc">A 7-point verification sheet to fill out before taking any micro-loan, gold loan, or NBFC credit.</p>
+          <a href="./assets/Loan_Checklist_Kannada.pdf" class="btn btn-outline" download data-i18n="btn_download_chk">Download Checklist</a>
+        </div>
+
+        <div class="card">
+          <span style="font-size: 0.8rem; background: var(--color-lime); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">SAFETY LEAFLET</span>
+          <h3 style="margin-top: 0.5rem; color: var(--color-deep-teal);" data-i18n="res_safety_title">Digital Fraud Protection Pocket Card</h3>
+          <p style="color: var(--color-muted); font-size: 0.95rem; margin-bottom: 1rem;" data-i18n="res_safety_desc">Clear dos and don'ts for UPI transactions, QR codes, and phone calls requesting bank verification details.</p>
+          <a href="./assets/Digital_Safety_Card_Kannada.pdf" class="btn btn-outline" download data-i18n="btn_download_card">Download Pocket Card</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: ABOUT -->
+    <section id="about" class="page-section">
+      <div class="section-header">
+        <h1 data-i18n="about_title">About Project Artha — Her Economy</h1>
+        <p data-i18n="about_subtitle">Democratising practical financial education to advance inclusive economic growth.</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 2rem;">
+        <h3 style="color: var(--color-deep-teal); margin-bottom: 0.75rem;" data-i18n="about_mission_title">Our Mission</h3>
+        <p data-i18n="about_mission_text">Project Artha — Her Economy aims to make practical financial knowledge more accessible through approachable educational resources and tools. By helping women and young adults understand budgeting, savings, borrowing, and digital financial safety, the project seeks to support more informed everyday financial decisions.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h4 style="color: var(--color-teal); margin-bottom: 0.5rem;" data-i18n="about_sdg_title">Alignment with UN SDG 8</h4>
+          <p style="font-size: 0.95rem; color: var(--color-dark-text);" data-i18n="about_sdg_text">Sustainable Development Goal 8 promotes sustained, inclusive economic growth and decent work for all. Expanding practical financial awareness ensures individuals maintain control over their earned income and avoid predatory debt.</p>
+        </div>
+        <div class="card">
+          <h4 style="color: var(--color-teal); margin-bottom: 0.5rem;" data-i18n="about_kannada_title">Why Kannada-First?</h4>
+          <p style="font-size: 0.95rem; color: var(--color-dark-text);" data-i18n="about_kannada_text">Critical financial decisions are best understood in one's primary language. Providing high-fidelity Kannada financial materials breaks barriers created by English-centric financial jargon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: SURVEY -->
+    <section id="survey" class="page-section">
+      <div class="section-header">
+        <h1 data-i18n="survey_title">Baseline Needs Survey</h1>
+        <p data-i18n="survey_subtitle">Help us improve these learning resources by sharing your financial education experiences.</p>
+      </div>
+
+      <div class="card" style="max-width: 700px; margin: 0 auto; text-align: center; padding: 3rem 2rem;">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📋</div>
+        <h3 style="color: var(--color-deep-teal); margin-bottom: 0.75rem;" data-i18n="survey_card_title">Project Artha Community Survey</h3>
+        <p style="color: var(--color-muted); font-size: 0.95rem; margin-bottom: 1.5rem;" data-i18n="survey_card_desc">Participation is voluntary and strictly anonymous. No financial account numbers or personal identifying details are ever requested.</p>
+        <!-- Replace '#' with live survey URL when available -->
+        <a href="#survey-placeholder" onclick="alert('Survey link will be configured once the research coordinator publishes the active form.'); return false;" class="btn btn-primary" data-i18n="btn_take_survey">Open Survey Form (Placeholder)</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>PROJECT ARTHA — HER ECONOMY</h3>
+        <p data-i18n="footer_desc">An educational initiative advancing financial literacy, autonomy, and fraud resilience among women and youth in Karnataka.</p>
+      </div>
+      <div class="footer-links">
+        <h4 data-i18n="footer_nav_title">Navigation</h4>
+        <ul>
+          <li><a href="#home" onclick="navigateTo('home')" data-i18n="nav_home">Home</a></li>
+          <li><a href="#learn" onclick="navigateTo('learn')" data-i18n="nav_learn">Learn</a></li>
+          <li><a href="#calculators" onclick="navigateTo('calculators')" data-i18n="nav_calculators">Calculators</a></li>
+          <li><a href="#resources" onclick="navigateTo('resources')" data-i18n="nav_resources">Resources</a></li>
+          <li><a href="#about" onclick="navigateTo('about')" data-i18n="nav_about">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4 data-i18n="footer_helpline_title">Official Safety Helplines</h4>
+        <ul>
+          <li><span style="color: #A3B8B2;">Cybercrime Helpline:</span> <strong style="color: var(--color-lime);">1930</strong></li>
+          <li><a href="https://cybercrime.gov.in" target="_blank" rel="noopener noreferrer">cybercrime.gov.in</a></li>
+          <li><a href="https://rbi.org.in" target="_blank" rel="noopener noreferrer">Reserve Bank of India (RBI)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="disclaimer-banner">
+      <strong data-i18n="disclaimer_heading">Educational Disclaimer:</strong>
+      <span data-i18n="disclaimer_text">The information and calculators on this website are for educational and general informational purposes only. Calculations are estimates based on inputs provided and do not constitute personalized financial, investment, tax, or legal advice. Please verify important financial decisions and product terms with official regulatory sources or certified advisors.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Translation Dictionary
+    const i18n = {
+      en: {
+        nav_home: "Home",
+        nav_learn: "Learn",
+        nav_calculators: "Financial Calculators",
+        nav_resources: "Resources",
+        nav_about: "About Project Artha",
+        nav_survey: "Survey",
+        hero_title: "Financial confidence begins with understanding.",
+        hero_subtitle: "Practical financial education, simple tools, and accessible resources to help you budget, save, plan, and make more informed everyday financial decisions.",
+        cta_start_learning: "Start Learning",
+        cta_try_calc: "Try a Calculator",
+        cta_explore_resources: "Explore Resources",
+        hero_badge_title: "Independent & Practical",
+        hero_badge_desc: "Tailored for women and young adults navigating personal and micro-business finances in Karnataka.",
+        home_pillars_title: "How Project Artha Helps",
+        home_pillars_subtitle: "Core areas of focus built into our open financial education toolkit.",
+        card_budgeting_title: "Budgeting & Cash Flow",
+        card_budgeting_desc: "Master fixed vs. variable spending and build stability even with irregular monthly earnings.",
+        card_savings_title: "Savings & Safety Nets",
+        card_savings_desc: "Calculate emergency targets and establish realistic timelines for rainy-day security.",
+        card_loans_title: "Loans & True Costs",
+        card_loans_desc: "Unpack flat rates vs. reducing balance EMIs and compare borrowing offers without confusion.",
+        card_safety_title: "Digital Payment Safety",
+        card_safety_desc: "Understand UPI protections, verify scams, and memorize the golden rule: never enter a PIN to receive funds.",
+        learn_title: "Learning Centre",
+        learn_subtitle: "Structured, jargon-free lessons designed for immediate everyday application.",
+        module_a_title: "Module A: Understanding Money & Needs vs. Wants",
+        module_a_body: "Financial literacy is the skill of using money intentionally. Needs are non-negotiable living expenses (rent, dal, rice, basic medicine). Wants enhance life but can be deferred (dining out, fashion upgrades). Reviewing expenses without self-judgement allows you to identify where money leaks occur.",
+        module_a_tag: "Essential Foundation",
+        module_b_title: "Module B: Budgeting with Regular or Irregular Income",
+        module_b_body: "If your monthly income fluctuates (freelancing, gig work, tailoring, seasonal agricultural trading), budget using your lowest earning month from the past 6 months as your baseline. Any surplus in peak months must flow into an income-buffer account to protect low-income cycles.",
+        module_b_tag: "Cash-Flow Planning",
+        module_c_title: "Module C: Emergency Funds & Safe Saving",
+        module_c_body: "An emergency fund is strictly for unexpected crises: sudden medical events, vehicle repair needed for livelihood, or temporary job loss. A realistic baseline target is 3 to 6 months of essential living costs kept in accessible, risk-free savings accounts or liquid recurring deposits.",
+        module_c_tag: "Risk Protection",
+        module_d_title: "Module D: Demystifying Loans, EMIs & Borrowing Traps",
+        module_d_body: "Never evaluate a loan on monthly EMI alone. Lenders quoting a \"flat interest rate\" of 10% actually charge nearly 18% on a reducing-balance basis because you continue paying interest on money you already returned. Always demand the Total Cost of Borrowing including processing fees and GST.",
+        module_d_tag: "Debt Management",
+        module_e_title: "Module E: Digital Payment Safety & Fraud Prevention",
+        module_e_body: "Crucial rule of UPI: You NEVER need to enter your UPI PIN, scan a QR code, or approve a collect request to RECEIVE money. Entering your PIN always debits money from your account. If defrauded, dial 1930 immediately or log on to cybercrime.gov.in within 2 hours to freeze illicit transfers.",
+        module_e_tag: "Official Cyber Safety",
+        btn_use_tool: "Open Budget Planner",
+        btn_use_tool_irregular: "Open Irregular Income Planner",
+        btn_use_tool_fund: "Calculate Emergency Target",
+        btn_use_tool_emi: "Compare Loan EMIs",
+        btn_visit_portal: "National Cyber Portal (1930)",
+        quiz_heading: "Test Your Knowledge",
+        quiz_subheading: "Check your understanding of basic financial traps and principles.",
+        quiz_q1: "When a buyer wants to send you money through UPI, do you need to enter your UPI PIN?",
+        quiz_q1_op1: "Yes, to confirm you accept the incoming payment.",
+        quiz_q1_op2: "No, UPI PIN is strictly used to authorise outgoing payments.",
+        quiz_q1_op3: "Only if the amount is greater than ₹2,000.",
+        calc_main_title: "Financial Calculators",
+        calc_main_subtitle: "Accurate client-side calculation tools tailored to Indian financial scenarios.",
+        tab_budget: "Monthly Budget",
+        tab_irregular: "Irregular Income",
+        tab_emergency: "Emergency Fund",
+        tab_emi: "Loan EMI",
+        tab_compare: "Loan Comparison",
+        tab_compound: "Compound Growth",
+        tab_inflation: "Inflation Impact",
+        tab_goal: "Savings Goal",
+        calc1_title: "Monthly Budget Planner",
+        calc1_desc: "Map your income and expenses to ensure cash flow positivity.",
+        lbl_take_home_inc: "Monthly Take-Home Income (₹)",
+        lbl_housing_util: "Housing & Utilities (₹)",
+        lbl_food_groceries: "Food & Groceries (₹)",
+        lbl_transport_health: "Transport & Healthcare (₹)",
+        lbl_debt_emi: "Debt / EMIs / Chits (₹)",
+        lbl_personal_other: "Discretionary / Other (₹)",
+        res_summary: "Summary",
+        res_total_inc: "Total Income:",
+        res_total_exp: "Total Expenses:",
+        res_surplus: "Net Savings / Surplus:",
+        res_savings_rate: "Savings Ratio:",
+        calc2_title: "Irregular-Income Budget Planner",
+        calc2_desc: "Calculate baseline survival budgets using recent minimum earnings.",
+        lbl_m1: "Month 1 Income (₹)",
+        lbl_m2: "Month 2 Income (₹)",
+        lbl_m3: "Month 3 Income (₹)",
+        lbl_bare_expenses: "Bare Essential Monthly Expenses (₹)",
+        res_avg_inc: "Average Monthly Income:",
+        res_lowest_inc: "Lowest Month (Safety Baseline):",
+        res_gap: "Baseline Deficit / Buffer:",
+        calc3_title: "Emergency-Fund Target Calculator",
+        lbl_monthly_essentials: "Monthly Essential Living Expenses (₹)",
+        lbl_months_target: "Target Coverage (Months)",
+        lbl_current_savings: "Current Dedicated Emergency Savings (₹)",
+        lbl_monthly_contrib: "Monthly Contribution Possible (₹)",
+        res_target_fund: "Target Emergency Fund:",
+        res_shortfall: "Remaining Shortfall:",
+        res_time_needed: "Months to Reach Goal:",
+        calc4_title: "Loan EMI Calculator (Reducing Balance)",
+        lbl_principal: "Principal Loan Amount (₹)",
+        lbl_interest_rate: "Annual Interest Rate (%)",
+        lbl_tenure_months: "Tenure (Months)",
+        res_monthly_emi: "Monthly EMI:",
+        res_total_interest: "Total Interest Payable:",
+        res_total_repayment: "Total Repayment Amount:",
+        calc4_formula_note: "Formula: EMI = [P × r × (1 + r)^n] / [(1 + r)^n − 1] where r is monthly interest.",
+        calc5_title: "Loan Comparison Tool",
+        calc5_desc: "Compare two loan terms side by side to see the true cost difference.",
+        opt_a: "Option A",
+        opt_b: "Option B",
+        res_total_a: "Option A Total Cost:",
+        res_total_b: "Option B Total Cost:",
+        res_cost_diff: "Potential Savings choosing Option A:",
+        calc6_title: "Savings & Compound Interest Calculator",
+        lbl_initial_deposit: "Initial Deposit (₹)",
+        lbl_monthly_savings: "Monthly Addition (₹)",
+        lbl_interest_rate_return: "Expected Rate (% p.a.)",
+        lbl_period_years: "Period (Years)",
+        res_total_invested: "Total Contributed:",
+        res_interest_earned: "Interest / Growth:",
+        res_future_corpus: "Estimated Future Balance:",
+        calc7_title: "Inflation & Purchasing Power Calculator",
+        lbl_current_cost: "Current Cost of Item/Goal (₹)",
+        lbl_inflation_rate: "Assumed Inflation Rate (% p.a.)",
+        lbl_years_ahead: "Years in Future",
+        res_future_equiv: "Future Cost Equivalent:",
+        res_purchasing_power: "Future Purchasing Power of Today's Sum:",
+        calc8_title: "Savings-Goal Planner",
+        lbl_goal_amount: "Target Amount (₹)",
+        lbl_sg_current: "Current Savings (₹)",
+        lbl_timeframe_m: "Timeframe (Months)",
+        res_remaining_save: "Remaining Gap:",
+        res_monthly_required: "Monthly Savings Needed:",
+        res_page_title: "Educational Guides & Worksheets",
+        res_page_subtitle: "Direct downloadable resources prepared in simple Kannada and English. Free for public use.",
+        res_guide_title: "Project Artha Financial Literacy Handbook (ಕನ್ನಡ)",
+        res_guide_desc: "The complete illustrated handbook introducing foundational budgeting, safe credit practices, and household money management.",
+        btn_download_pdf: "Download PDF (ಕನ್ನಡ)",
+        res_ws_budget_title: "Monthly Household Budget Template (ಕನ್ನಡ)",
+        res_ws_budget_desc: "Printable double-column expense tracking worksheet tailored for Kannada-speaking households and self-employed women.",
+        btn_download_ws: "Download Worksheet",
+        res_chk_loan_title: "Borrowing & Loan Evaluation Checklist",
+        res_chk_loan_desc: "A 7-point verification sheet to fill out before taking any micro-loan, gold loan, or NBFC credit.",
+        btn_download_chk: "Download Checklist",
+        res_safety_title: "Digital Fraud Protection Pocket Card",
+        res_safety_desc: "Clear dos and don'ts for UPI transactions, QR codes, and phone calls requesting bank verification details.",
+        btn_download_card: "Download Pocket Card",
+        about_title: "About Project Artha — Her Economy",
+        about_subtitle: "Democratising practical financial education to advance inclusive economic growth.",
+        about_mission_title: "Our Mission",
+        about_mission_text: "Project Artha — Her Economy aims to make practical financial knowledge more accessible through approachable educational resources and tools. By helping women and young adults understand budgeting, savings, borrowing, and digital financial safety, the project seeks to support more informed everyday financial decisions.",
+        about_sdg_title: "Alignment with UN SDG 8",
+        about_sdg_text: "Sustainable Development Goal 8 promotes sustained, inclusive economic growth and decent work for all. Expanding practical financial awareness ensures individuals maintain control over their earned income and avoid predatory debt.",
+        about_kannada_title: "Why Kannada-First?",
+        about_kannada_text: "Critical financial decisions are best understood in one's primary language. Providing high-fidelity Kannada financial materials breaks barriers created by English-centric financial jargon.",
+        survey_title: "Baseline Needs Survey",
+        survey_subtitle: "Help us improve these learning resources by sharing your financial education experiences.",
+        survey_card_title: "Project Artha Community Survey",
+        survey_card_desc: "Participation is voluntary and strictly anonymous. No financial account numbers or personal identifying details are ever requested.",
+        btn_take_survey: "Open Survey Form (Placeholder)",
+        footer_desc: "An educational initiative advancing financial literacy, autonomy, and fraud resilience among women and youth in Karnataka.",
+        footer_nav_title: "Navigation",
+        footer_helpline_title: "Official Safety Helplines",
+        disclaimer_heading: "Educational Disclaimer:",
+        disclaimer_text: "The information and calculators on this website are for educational and general informational purposes only. Calculations are estimates based on inputs provided and do not constitute personalized financial, investment, tax, or legal advice. Please verify important financial decisions and product terms with official regulatory sources or certified advisors."
+      },
+      kn: {
+        nav_home: "ಮುಖಪುಟ",
+        nav_learn: "ಕಲಿಯಿರಿ",
+        nav_calculators: "ಹಣಕಾಸು ಕ್ಯಾಲ್ಕುಲೇಟರ್‌ಗಳು",
+        nav_resources: "ಸಂಪನ್ಮೂಲಗಳು",
+        nav_about: "ಯೋಜನೆಯ ಬಗ್ಗೆ",
+        nav_survey: "ಸಮೀಕ್ಷೆ",
+        hero_title: "ಹಣಕಾಸಿನ ಆತ್ಮವಿಶ್ವಾಸವು ಅರಿವಿನಿಂದ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ.",
+        hero_subtitle: "ಬಜೆಟ್ ಮಾಡಲು, ಉಳಿತಾಯ ಮಾಡಲು ಮತ್ತು ದೈನಂದಿನ ಹಣಕಾಸಿನ ನಿರ್ಧಾರಗಳನ್ನು ಸುಲಭವಾಗಿ ತೆಗೆದುಕೊಳ್ಳಲು ಪ್ರಾಯೋಗಿಕ ಶಿಕ್ಷಣ ಮತ್ತು ಪರಿಕರಗಳು.",
+        cta_start_learning: "ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸಿ",
+        cta_try_calc: "ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಬಳಸಿ",
+        cta_explore_resources: "ಸಂಪನ್ಮೂಲಗಳನ್ನು ನೋಡಿ",
+        hero_badge_title: "ಸ್ವತಂತ್ರ ಮತ್ತು ಪ್ರಾಯೋಗಿಕ",
+        hero_badge_desc: "ಕರ್ನಾಟಕದ ಮಹಿಳೆಯರು ಮತ್ತು ಯುವಜನರ ಆರ್ಥಿಕ ಸಬಲೀಕರಣಕ್ಕಾಗಿ ವಿಶೇಷವಾಗಿ ರೂಪಿಸಲಾಗಿದೆ.",
+        home_pillars_title: "ಪ್ರಾಜೆಕ್ಟ್ ಅರ್ಥ ಹೇಗೆ ನೆರವಾಗುತ್ತದೆ",
+        home_pillars_subtitle: "ನಮ್ಮ ಮುಕ್ತ ಹಣಕಾಸು ಶಿಕ್ಷಣದ ಮುಖ್ಯ ಭಾಗಗಳು.",
+        card_budgeting_title: "ಬಜೆಟ್ ಮತ್ತು ಖರ್ಚು ಯೋಜನೆ",
+        card_budgeting_desc: "ಸ್ಥಿರ ಮತ್ತು ಬದಲಾಗುವ ಖರ್ಚುಗಳನ್ನು ಅರಿತುಕೊಳ್ಳಿ; ಅಸ್ಥಿರ ಆದಾಯವಿದ್ದರೂ ಹಣ ಉಳಿಸಲು ಕಲಿಯಿರಿ.",
+        card_savings_title: "ತುರ್ತು ನಿಧಿ ಮತ್ತು ಉಳಿತಾಯ",
+        card_savings_desc: "ಕಷ್ಟಕಾಲಕ್ಕೆ ಬೇಕಾಗುವ ತುರ್ತು ನಿಧಿಯ ಗುರಿಯನ್ನು ಸುಲಭವಾಗಿ ಲೆಕ್ಕಹಾಕಿ.",
+        card_loans_title: "ಸಾಲ ಮತ್ತು ಇಎಂಐ ಅರಿವು",
+        card_loans_desc: "ಫ್ಲಾಟ್ ದರ ಮತ್ತು ರಿಡ್ಯೂಸಿಂಗ್ ದರದ ವ್ಯತ್ಯಾಸವನ್ನು ತಿಳಿದುಕೊಂಡು ವಂಚನೆಯಿಂದ ಪಾರಾಗಿ.",
+        card_safety_title: "ಡಿಜಿಟಲ್ ಪಾವತಿ ಸುರಕ್ಷತೆ",
+        card_safety_desc: "ಯುಪಿಐ ಸುರಕ್ಷತಾ ನಿಯಮಗಳು: ಹಣ ಪಡೆಯಲು ಯುಪಿಐ ಪಿನ್ (UPI PIN) ಹಾಕುವ ಅಗತ್ಯವಿಲ್ಲ ಎಂಬುದನ್ನು ನೆನಪಿಡಿ.",
+        learn_title: "ಕಲಿಕಾ ಕೇಂದ್ರ",
+        learn_subtitle: "ದೈನಂದಿನ ಜೀವನಕ್ಕೆ ತಕ್ಷಣ ಅನ್ವಯಿಸಬಹುದಾದ ಸರಳ ಮತ್ತು ಸ್ಪಷ್ಟ ಪಾಠಗಳು.",
+        module_a_title: "ಮಾಡ್ಯೂಲ್ ಎ: ಹಣದ ಮೂಲ ತತ್ವ & ಅಗತ್ಯಗಳು vs ಆಸೆಗಳು",
+        module_a_body: "ಹಣಕಾಸಿನ ಸಾಕ್ಷರತೆ ಎಂದರೆ ಹಣವನ್ನು ಯೋಚಿಸಿ ಬಳಸುವುದು. ಅಗತ್ಯಗಳು ಬದುಕಿಗೆ ಅನಿವಾರ್ಯ (ಬಾಡಿಗೆ, ಅಕ್ಕಿ-ಬೇಳೆ, ಔಷಧ). ಆಸೆಗಳನ್ನು ಮುಂದೂಡಬಹುದು (ಹೊರಗಿನ ಊಟ, ಹೊಸ ಬಟ್ಟೆ). ನಿಮ್ಮ ಖರ್ಚುಗಳನ್ನು ಗಮನಿಸುವುದರಿಂದ ಹಣ ಎಲ್ಲಿ ವ್ಯರ್ಥವಾಗುತ್ತಿದೆ ಎಂದು ತಿಳಿಯುತ್ತದೆ.",
+        module_a_tag: "ಮೂಲ ತಳಹದಿ",
+        module_b_title: "ಮಾಡ್ಯೂಲ್ ಬಿ: ನಿಯಮಿತ ಮತ್ತು ಏರಿಳಿತದ ಆದಾಯಕ್ಕೆ ಬಜೆಟ್",
+        module_b_body: "ನಿಮ್ಮ ಮಾಸಿಕ ಆದಾಯವು ಪ್ರತಿ ತಿಂಗಳು ಬದಲಾಗುತ್ತಿದ್ದರೆ (ಟೈಲರಿಂಗ್, ಸಣ್ಣ ವ್ಯಾಪಾರ, ಕೂಲಿ), ಕಳೆದ 6 ತಿಂಗಳ ಕನಿಷ್ಠ ಆದಾಯವನ್ನು ಆಧಾರವಾಗಿಟ್ಟುಕೊಂಡು ಬಜೆಟ್ ಮಾಡಿ. ಹೆಚ್ಚು ಆದಾಯ ಬಂದ ತಿಂಗಳಲ್ಲಿ ಉಳಿತಾಯ ಮಾಡಿ ಕಷ್ಟದ ತಿಂಗಳಿಗೆ ಇಟ್ಟುಕೊಳ್ಳಿ.",
+        module_b_tag: "ಹಣದ ಹರಿವು",
+        module_c_title: "ಮಾಡ್ಯೂಲ್ ಸಿ: ತುರ್ತು ನಿಧಿ ಮತ್ತು ಸುರಕ್ಷಿತ ಉಳಿತಾಯ",
+        module_c_body: "ತುರ್ತು ನಿಧಿಯು ಕೇವಲ ಅನಿರೀಕ್ಷಿತ ಸಂಕಷ್ಟಗಳಿಗೆ ಮಾತ್ರ (ಆಸ್ಪತ್ರೆ ವೆಚ್ಚ, ಉದ್ಯೋಗ ನಷ್ಟ). ನಿಮ್ಮ ಕುಟುಂಬದ 3 ರಿಂದ 6 ತಿಂಗಳ ಕನಿಷ್ಠ ಖರ್ಚಿಗೆ ಸಮಾನವಾದ ಮೊತ್ತವನ್ನು ಸುರಕ್ಷಿತ ಬ್ಯಾಂಕ್ ಖಾತೆಯಲ್ಲಿಡುವುದು ಉತ್ತಮ.",
+        module_c_tag: "ರಕ್ಷಣೆ",
+        module_d_title: "ಮಾಡ್ಯೂಲ್ ಡಿ: ಸಾಲಗಳು, ಇಎಂಐ ಮತ್ತು ಸಾಲದ ಬಲೆಗಳು",
+        module_d_body: "ಕೇವಲ ಮಾಸಿಕ ಇಎಂಐ (EMI) ನೋಡಿ ಸಾಲ ಪಡೆಯಬೇಡಿ. 10% ಫ್ಲಾಟ್ ಬಡ್ಡಿ ಎಂದರೆ ನಿಜವಾಗಿ ಅದು ಸುಮಾರು 18% ರಿಡ್ಯೂಸಿಂಗ್ ಬಡ್ಡಿಯಾಗುತ್ತದೆ. ಪ್ರೊಸೆಸಿಂಗ್ ಶುಲ್ಕ ಮತ್ತು ಒಟ್ಟು ಮರುಪಾವತಿ ಮೊತ್ತವನ್ನು ಯಾವಾಗಲೂ ಪರಿಶೀಲಿಸಿ.",
+        module_d_tag: "ಸಾಲ ನಿರ್ವಹಣೆ",
+        module_e_title: "ಮಾಡ್ಯೂಲ್ ಇ: ಡಿಜಿಟಲ್ ಪಾವತಿ ಮತ್ತು ಸೈಬರ್ ವಂಚನೆ ತಡೆ",
+        module_e_body: "ಯುಪಿಐನ ಸುವರ್ಣ ನಿಯಮ: ನಿಮ್ಮ ಖಾತೆಗೆ ಹಣ ಸ್ವೀಕರಿಸಲು ನೀವು ಯಾವುದೇ ಕಾರಣಕ್ಕೂ ಯುಪಿಐ ಪಿನ್ (PIN) ನಮೂದಿಸಬೇಕಾಗಿಲ್ಲ ಅಥವಾ ಕ್ಯೂಆರ್ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಬೇಕಾಗಿಲ್ಲ. ಮೋಸ ಹೋದರೆ ತಕ್ಷಣ 1930 ಸಂಖ್ಯೆಗೆ ಕರೆ ಮಾಡಿ.",
+        module_e_tag: "ಸೈಬರ್ ಸುರಕ್ಷತೆ",
+        btn_use_tool: "ಬಜೆಟ್ ಪ್ಲಾನರ್ ತೆರೆಯಿರಿ",
+        btn_use_tool_irregular: "ಅಸ್ಥಿರ ಆದಾಯ ಪ್ಲಾನರ್ ತೆರೆಯಿರಿ",
+        btn_use_tool_fund: "ತುರ್ತು ನಿಧಿ ಲೆಕ್ಕಹಾಕಿ",
+        btn_use_tool_emi: "ಇಎಂಐ ಹೋಲಿಕೆ ಮಾಡಿ",
+        btn_visit_portal: "ಸೈಬರ್ ಪೋರ್ಟಲ್ (1930)",
+        quiz_heading: "ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ಪರೀಕ್ಷಿಸಿ",
+        quiz_subheading: "ಮೂಲ ಹಣಕಾಸು ನಿಯಮಗಳ ಕುರಿತು ನಿಮ್ಮ ತಿಳುವಳಿಕೆಯನ್ನು ಪರಿಶೀಲಿಸಿ.",
+        quiz_q1: "ಖರೀದಿದಾರರು ಯುಪಿಐ (UPI) ಮೂಲಕ ನಿಮಗೆ ಹಣ ಕಳುಹಿಸುವಾಗ, ನೀವು ಯುಪಿಐ ಪಿನ್ ನಮೂದಿಸಬೇಕೇ?",
+        quiz_q1_op1: "ಹೌದು, ಹಣವನ್ನು ಸ್ವೀಕರಿಸಲು ಒಪ್ಪಿಗೆ ನೀಡಲು.",
+        quiz_q1_op2: "ಇಲ್ಲ, ಯುಪಿಐ ಪಿನ್ ಕೇವಲ ಹಣವನ್ನು ಕಳುಹಿಸಲು ಮಾತ್ರ ಬಳಸಲಾಗುತ್ತದೆ.",
+        quiz_q1_op3: "ಕೇವಲ ₹2,000 ಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ಮೊತ್ತಕ್ಕೆ ಮಾತ್ರ.",
+        calc_main_title: "ಹಣಕಾಸು ಕ್ಯಾಲ್ಕುಲೇಟರ್‌ಗಳು",
+        calc_main_subtitle: "ನಿಖರವಾದ ಮತ್ತು ದೈನಂದಿನ ಹಣಕಾಸಿಗೆ ನೆರವಾಗುವ ಸುಲಭ ಗಣಕ ಯಂತ್ರಗಳು.",
+        tab_budget: "ಮಾಸಿಕ ಬಜೆಟ್",
+        tab_irregular: "ಅಸ್ಥಿರ ಆದಾಯ",
+        tab_emergency: "ತುರ್ತು ನಿಧಿ",
+        tab_emi: "ಸಾಲದ ಇಎಂಐ",
+        tab_compare: "ಸಾಲ ಹೋಲಿಕೆ",
+        tab_compound: "ಚಕ್ರಬಡ್ಡಿ ಉಳಿತಾಯ",
+        tab_inflation: "ಹಣದುಬ್ಬರದ ಪರಿಣಾಮ",
+        tab_goal: "ಉಳಿತಾಯ ಗುರಿ",
+        calc1_title: "ಮಾಸಿಕ ಬಜೆಟ್ ಪ್ಲಾನರ್",
+        calc1_desc: "ನಿಮ್ಮ ಆದಾಯ ಮತ್ತು ವೆಚ್ಚವನ್ನು ಸರಿಹೊಂದಿಸಿ ಉಳಿತಾಯವನ್ನು ಯೋಜಿಸಿ.",
+        lbl_take_home_inc: "ಮಾಸಿಕ ಒಟ್ಟು ಆದಾಯ (₹)",
+        lbl_housing_util: "ಮನೆ ಬಾಡಿಗೆ ಮತ್ತು ಕರೆಂಟ್/ನೀರು ಬಿಲ್ (₹)",
+        lbl_food_groceries: "ಊಟ ಮತ್ತು ದಿನಸಿ (₹)",
+        lbl_transport_health: "ಸಾರಿಗೆ ಮತ್ತು ಆರೋಗ್ಯ ವೆಚ್ಚ (₹)",
+        lbl_debt_emi: "ಸಾಲದ ಕಂತು / ಚೀಟಿ (₹)",
+        lbl_personal_other: "ಇತರ ಖರ್ಚುಗಳು (₹)",
+        res_summary: "ಸಾರಾಂಶ",
+        res_total_inc: "ಒಟ್ಟು ಆದಾಯ:",
+        res_total_exp: "ಒಟ್ಟು ವೆಚ್ಚ:",
+        res_surplus: "ನಿವ್ವಳ ಉಳಿತಾಯ / ಮಿಕ್ಕ ಹಣ:",
+        res_savings_rate: "ಉಳಿತಾಯದ ಪ್ರಮಾಣ:",
+        calc2_title: "ಅಸ್ಥಿರ ಆದಾಯ ಬಜೆಟ್ ಪ್ಲಾನರ್",
+        calc2_desc: "ಕಡಿಮೆ ಆದಾಯ ಬಂದ ತಿಂಗಳನ್ನು ಆಧಾರವಾಗಿಟ್ಟುಕೊಂಡು ಸುರಕ್ಷಿತ ಬಜೆಟ್ ಮಾಡಿ.",
+        lbl_m1: "ತಿಂಗಳು 1 ಆದಾಯ (₹)",
+        lbl_m2: "ತಿಂಗಳು 2 ಆದಾಯ (₹)",
+        lbl_m3: "ತಿಂಗಳು 3 ಆದಾಯ (₹)",
+        lbl_bare_expenses: "ಅತ್ಯಗತ್ಯ ಮಾಸಿಕ ಖರ್ಚುಗಳು (₹)",
+        res_avg_inc: "ಸರಾಸರಿ ಮಾಸಿಕ ಆದಾಯ:",
+        res_lowest_inc: "ಕನಿಷ್ಠ ಆದಾಯದ ತಿಂಗಳು:",
+        res_gap: "ಕೊರತೆ ಅಥವಾ ಉಳಿಕೆ:",
+        calc3_title: "ತುರ್ತು ನಿಧಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್",
+        lbl_monthly_essentials: "ತಿಂಗಳ ಅತ್ಯಗತ್ಯ ಖರ್ಚು (₹)",
+        lbl_months_target: "ಎಷ್ಟು ತಿಂಗಳ ರಕ್ಷಣೆ ಬೇಕು?",
+        lbl_current_savings: "ಈಗಿರುವ ತುರ್ತು ಉಳಿತಾಯ (₹)",
+        lbl_monthly_contrib: "ತಿಂಗಳಿಗೆ ಉಳಿಸಬಹುದಾದ ಮೊತ್ತ (₹)",
+        res_target_fund: "ಗುರಿಯ ತುರ್ತು ನಿಧಿ:",
+        res_shortfall: "ಇನ್ನೂ ಬೇಕಾಗುವ ಹಣ:",
+        res_time_needed: "ಗುರಿ ತಲುಪಲು ಬೇಕಾಗುವ ತಿಂಗಳುಗಳು:",
+        calc4_title: "ಸಾಲದ ಇಎಂಐ (EMI) ಕ್ಯಾಲ್ಕುಲೇಟರ್",
+        lbl_principal: "ಸಾಲದ ಮೊತ್ತ (₹)",
+        lbl_interest_rate: "ವಾರ್ಷಿಕ ಬಡ್ಡಿ ದರ (%)",
+        lbl_tenure_months: "ಅವಧಿ (ತಿಂಗಳುಗಳಲ್ಲಿ)",
+        res_monthly_emi: "ಮಾಸಿಕ ಇಎಂಐ:",
+        res_total_interest: "ಒಟ್ಟು ಪಾವತಿಸಬೇಕಾದ ಬಡ್ಡಿ:",
+        res_total_repayment: "ಒಟ್ಟು ಮರುಪಾವತಿ ಮೊತ್ತ:",
+        calc4_formula_note: "ಸೂತ್ರ: EMI = [P × r × (1 + r)^n] / [(1 + r)^n − 1] (ರಿಡ್ಯೂಸಿಂಗ್ ಬ್ಯಾಲೆನ್ಸ್ ಆಧಾರಿತ).",
+        calc5_title: "ಸಾಲ ಹೋಲಿಕೆ ಸಾಧನ",
+        calc5_desc: "ಎರಡು ಸಾಲದ ಆಫರ್‌ಗಳನ್ನು ಹೋಲಿಸಿ ನಿಜವಾದ ವೆಚ್ಚ ತಿಳಿಯಿರಿ.",
+        opt_a: "ಆಯ್ಕೆ ಎ",
+        opt_b: "ಆಯ್ಕೆ ಬಿ",
+        res_total_a: "ಆಯ್ಕೆ ಎ ಒಟ್ಟು ಮೊತ್ತ:",
+        res_total_b: "ಆಯ್ಕೆ ಬಿ ಒಟ್ಟು ಮೊತ್ತ:",
+        res_cost_diff: "ಆಯ್ಕೆ ಎ ಯಿಂದ ಉಳಿತಾಯ:",
+        calc6_title: "ಉಳಿತಾಯ ಮತ್ತು ಚಕ್ರಬಡ್ಡಿ ಗಣಕ",
+        lbl_initial_deposit: "ಪ್ರಾರಂಭಿಕ ಠೇವಣಿ (₹)",
+        lbl_monthly_savings: "ಮಾಸಿಕ ಸೇರ್ಪಡೆ (₹)",
+        lbl_interest_rate_return: "ನಿರೀಕ್ಷಿತ ಬಡ್ಡಿ ದರ (% p.a.)",
+        lbl_period_years: "ಅವಧಿ (ವರ್ಷಗಳು)",
+        res_total_invested: "ಒಟ್ಟು ಜಮಾ ಮಾಡಿದ ಹಣ:",
+        res_interest_earned: "ಗಳಿಸಿದ ಬಡ್ಡಿ:",
+        res_future_corpus: "ಅಂದಾಜು ಒಟ್ಟು ಮೊತ್ತ:",
+        calc7_title: "ಹಣದುಬ್ಬರ ಮತ್ತು ಮೌಲ್ಯ ಗಣಕ",
+        lbl_current_cost: "ಇಂದಿನ ಬೆಲೆ (₹)",
+        lbl_inflation_rate: "ಅಂದಾಜು ಹಣದುಬ್ಬರ ದರ (% p.a.)",
+        lbl_years_ahead: "ಮುಂದಿನ ವರ್ಷಗಳು",
+        res_future_equiv: "ಭವಿಷ್ಯದಲ್ಲಿ ತಗಲುವ ಬೆಲೆ:",
+        res_purchasing_power: "ಇಂದಿನ ಹಣದ ಭವಿಷ್ಯದ ಖರೀದಿ ಶಕ್ತಿ:",
+        calc8_title: "ಉಳಿತಾಯ ಗುರಿ ಯೋಜಕ",
+        lbl_goal_amount: "ಗುರಿ ಮೊತ್ತ (₹)",
+        lbl_sg_current: "ಈಗಿರುವ ಹಣ (₹)",
+        lbl_timeframe_m: "ಅವಧಿ (ತಿಂಗಳುಗಳಲ್ಲಿ)",
+        res_remaining_save: "ಉಳಿಸಬೇಕಾದ ಕೊರತೆ ಹಣ:",
+        res_monthly_required: "ತಿಂಗಳಿಗೆ ಉಳಿಸಬೇಕಾದ ಮೊತ್ತ:",
+        res_page_title: "ಶೈಕ್ಷಣಿಕ ಕೈಪಿಡಿಗಳು ಮತ್ತು ವರ್ಕ್‌ಶೀಟ್‌ಗಳು",
+        res_page_subtitle: "ಸರಳ ಕನ್ನಡದಲ್ಲಿ ಉಚಿತವಾಗಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿಕೊಳ್ಳಬಹುದಾದ ಅಧ್ಯಯನ ಸಾಮಗ್ರಿಗಳು.",
+        res_guide_title: "ಪ್ರಾಜೆಕ್ಟ್ ಅರ್ಥ ಹಣಕಾಸು ಸಾಕ್ಷರತೆ ಕೈಪಿಡಿ (ಕನ್ನಡ)",
+        res_guide_desc: "ಬಜೆಟ್, ಉಳಿತಾಯ ಮತ್ತು ಸಾಲದ ಸೂಕ್ಷ್ಮಗಳನ್ನು ವಿವರಿಸುವ ಸಮಗ್ರ ಚಿತ್ರಸಹಿತ ಮಾರ್ಗದರ್ಶಿ.",
+        btn_download_pdf: "ಪಿಡಿಎಫ್ ಡೌನ್‌ಲೋಡ್ (ಕನ್ನಡ)",
+        res_ws_budget_title: "ಮಾಸಿಕ ಕುಟುಂಬ ಬಜೆಟ್ ವರ್ಕ್‌ಶೀಟ್ (ಕನ್ನಡ)",
+        res_ws_budget_desc: "ಮನೆಯ ಖರ್ಚುಗಳನ್ನು ಸುಲಭವಾಗಿ ಬರೆದಿಟ್ಟುಕೊಳ್ಳಲು ಮುದ್ರಿಸಬಹುದಾದ ನಮೂನೆ.",
+        btn_download_ws: "ವರ್ಕ್‌ಶೀಟ್ ಡೌನ್‌ಲೋಡ್",
+        res_chk_loan_title: "ಸಾಲ ಪಡೆಯುವ ಮುನ್ನ ಪರಿಶೀಲನಾ ಪಟ್ಟಿ",
+        res_chk_loan_desc: "ಯಾವುದೇ ಸಾಲ ಪಡೆಯುವ ಮುನ್ನ ಬಡ್ಡಿ ಮತ್ತು ಶುಲ್ಕಗಳನ್ನು ಪರಿಶೀಲಿಸಲು 7 ಅಂಶಗಳ ಪಟ್ಟಿ.",
+        btn_download_chk: "ಪರಿಶೀಲನಾ ಪಟ್ಟಿ ಡೌನ್‌ಲೋಡ್",
+        res_safety_title: "ಡಿಜಿಟಲ್ ವಂಚನೆ ತಡೆ ಪಾಕೆಟ್ ಕಾರ್ಡ್",
+        res_safety_desc: "ಯುಪಿಐ ಮತ್ತು ಆನ್‌ಲೈನ್ ಬ್ಯಾಂಕಿಂಗ್ ಮಾಡುವಾಗ ಪಾಲಿಸಬೇಕಾದ ಸುರಕ್ಷತಾ ನಿಯಮಗಳು.",
+        btn_download_card: "ಕಾರ್ಡ್ ಡೌನ್‌ಲೋಡ್",
+        about_title: "ಪ್ರಾಜೆಕ್ಟ್ ಅರ್ಥ — ಹರ್ ಇಕಾನಮಿ ಬಗ್ಗೆ",
+        about_subtitle: "ಎಲ್ಲರಿಗೂ ಸುಲಭವಾಗಿ ಹಣಕಾಸಿನ ಜ್ಞಾನ ಒದಗಿಸುವ ಸಾಮಾಜಿಕ ಉಪಕ್ರಮ.",
+        about_mission_title: "ನಮ್ಮ ಧ್ಯೇಯ",
+        about_mission_text: "ಪ್ರಾಜೆಕ್ಟ್ ಅರ್ಥ — ಹರ್ ಇಕಾನಮಿಯು ಮಹಿಳೆಯರು ಮತ್ತು ಯುವಜನರಿಗೆ ಪ್ರಾಯೋಗಿಕ ಹಣಕಾಸು ಶಿಕ್ಷಣವನ್ನು ಒದಗಿಸಲು ರೂಪಿಸಲಾದ ಉಪಕ್ರಮವಾಗಿದೆ. ಬಜೆಟ್, ಉಳಿತಾಯ, ಸಾಲ ಮತ್ತು ಸೈಬರ್ ಸುರಕ್ಷತೆಯ ಅರಿವು ಮೂಡಿಸಿ ಆತ್ಮವಿಶ್ವಾಸದ ಆರ್ಥಿಕ ತೀರ್ಮಾನಗಳನ್ನು ಬೆಂಬಲಿಸುವುದು ನಮ್ಮ ಉದ್ದೇಶ.",
+        about_sdg_title: "ವಿಶ್ವಸಂಸ್ಥೆಯ SDG 8 ರೊಂದಿಗಿನ ಹೊಂದಾಣಿಕೆ",
+        about_sdg_text: "SDG 8 ಎಲ್ಲರಿಗೂ ಯೋಗ್ಯ ಕೆಲಸ ಮತ್ತು ಎಲ್ಲರನ್ನೊಳಗೊಂಡ ಆರ್ಥಿಕ ಬೆಳವಣಿಗೆಯನ್ನು ಉತ್ತೇಜಿಸುತ್ತದೆ. ಸೂಕ್ತ ಹಣಕಾಸಿನ ಶಿಕ್ಷಣವು ಜನರನ್ನು ಸಾಲದ ಬಲೆಯಿಂದ ರಕ್ಷಿಸುತ್ತದೆ.",
+        about_kannada_title: "ಕನ್ನಡದಲ್ಲೇ ಏಕೆ?",
+        about_kannada_text: "ಹಣಕಾಸಿನ ತೀರ್ಮಾನಗಳನ್ನು ಮಾತೃಭಾಷೆಯಲ್ಲಿ ಚೆನ್ನಾಗಿ ಅರ್ಥಮಾಡಿಕೊಳ್ಳಬಹುದು. ಇಂಗ್ಲಿಷ್ ಭಾಷೆಯ ಕಷ್ಟಕರ ಪದಗಳಿಲ್ಲದೆ ಕನ್ನಡದಲ್ಲೇ ನೇರ ತಿಳುವಳಿಕೆ ನೀಡುವುದು ನಮ್ಮ ಆಶಯ.",
+        survey_title: "ಮೂಲ ಸಮೀಕ್ಷೆ",
+        survey_subtitle: "ನಿಮ್ಮ ಹಣಕಾಸು ಅನುಭವಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳುವ ಮೂಲಕ ನಮ್ಮ ಕಲಿಕಾ ಸಾಮಗ್ರಿಗಳನ್ನು ಇನ್ನಷ್ಟು ಉತ್ತಮಗೊಳಿಸಲು ನೆರವಾಗಿ.",
+        survey_card_title: "ಪ್ರಾಜೆಕ್ಟ್ ಅರ್ಥ ಸಮುದಾಯ ಸಮೀಕ್ಷೆ",
+        survey_card_desc: "ಭಾಗವಹಿಸುವಿಕೆ ಸಂಪೂರ್ಣ ಸ್ವಯಂಪ್ರೇರಿತ ಮತ್ತು ಗೌಪ್ಯವಾಗಿರುತ್ತದೆ. ಯಾವುದೇ ವೈಯಕ್ತಿಕ ಬ್ಯಾಂಕ್ ಖಾತೆಯ ವಿವರಗಳನ್ನು ಕೇಳಲಾಗುವುದಿಲ್ಲ.",
+        btn_take_survey: "ಸಮೀಕ್ಷೆ ನಮೂನೆ ತೆರೆಯಿರಿ (ಪ್ರಾಯೋಗಿಕ)",
+        footer_desc: "ಕರ್ನಾಟಕದ ಮಹಿಳೆಯರು ಮತ್ತು ಯುವಜನರಲ್ಲಿ ಹಣಕಾಸು ಸಾಕ್ಷರತೆ ಮತ್ತು ಸೈಬರ್ ಸುರಕ್ಷತೆಯನ್ನು ಬೆಳೆಸುವ ಶೈಕ್ಷಣಿಕ ಯೋಜನೆ.",
+        footer_nav_title: "ನ್ಯಾವಿಗೇಷನ್",
+        footer_helpline_title: "ಅಧಿಕೃತ ಸುರಕ್ಷತಾ ಸಹಾಯವಾಣಿ",
+        disclaimer_heading: "ಶೈಕ್ಷಣಿಕ ಸ್ಪಷ್ಟನೆ:",
+        disclaimer_text: "ಈ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿರುವ ಮಾಹಿತಿ ಮತ್ತು ಕ್ಯಾಲ್ಕುಲೇಟರ್‌ಗಳು ಕೇವಲ ಶೈಕ್ಷಣಿಕ ಉದ್ದೇಶಕ್ಕಾಗಿ ಮಾತ್ರ. ಇವು ವೈಯಕ್ತಿಕ ಹಣಕಾಸು ಅಥವಾ ಹೂಡಿಕೆ ಸಲಹೆಯಲ್ಲ. ಯಾವುದೇ ಮುಖ್ಯ ಹಣಕಾಸಿನ ನಿರ್ಧಾರ ತೆಗೆದುಕೊಳ್ಳುವ ಮುನ್ನ ಅಧಿಕೃತ ತಜ್ಞರೊಂದಿಗೆ ಸಮಾಲೋಚಿಸಿ."
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.body.className = 'lang-' + lang;
+      document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+      document.getElementById('btnKn').classList.toggle('active', lang === 'kn');
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) {
+          el.innerText = i18n[lang][key];
+        }
+      });
+      // Recalculate dynamic notes
+      runIrregularCalc();
+    }
+
+    // Navigation Router
+    function navigateTo(sectionId, optSubId) {
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+      const targetSec = document.getElementById(sectionId);
+      if (targetSec) targetSec.classList.add('active');
+
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-target') === sectionId);
+      });
+
+      if (optSubId && sectionId === 'calculators') {
+        switchCalc(optSubId);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = link.getAttribute('data-target');
+        navigateTo(target);
+        document.getElementById('navLinks').classList.remove('show');
+      });
+    });
+
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('show');
+    });
+
+    // Calculator Switcher
+    function switchCalc(calcKey) {
+      document.querySelectorAll('.calc-pane').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.calc-tab-btn').forEach(b => b.classList.remove('active'));
+
+      const pane = document.getElementById('calc_' + calcKey);
+      if (pane) pane.classList.add('active');
+
+      event.target.classList.add('active');
+    }
+
+    // Currency Formatter
+    function fmtINR(val) {
+      return '₹' + Math.round(val).toLocaleString('en-IN');
+    }
+
+    // 1. Budget Calc
+    function runBudgetCalc() {
+      const inc = parseFloat(document.getElementById('b_income').value) || 0;
+      const h = parseFloat(document.getElementById('b_housing').value) || 0;
+      const f = parseFloat(document.getElementById('b_food').value) || 0;
+      const e = parseFloat(document.getElementById('b_essential').value) || 0;
+      const d = parseFloat(document.getElementById('b_debt').value) || 0;
+      const o = parseFloat(document.getElementById('b_other').value) || 0;
+
+      const totalExp = h + f + e + d + o;
+      const surplus = inc - totalExp;
+      const rate = inc > 0 ? ((surplus / inc) * 100).toFixed(1) : 0;
+
+      document.getElementById('b_res_inc').innerText = fmtINR(inc);
+      document.getElementById('b_res_exp').innerText = fmtINR(totalExp);
+      document.getElementById('b_res_surplus').innerText = fmtINR(surplus);
+      document.getElementById('b_res_rate').innerText = (surplus >= 0 ? rate : '0') + '%';
+      document.getElementById('b_res_surplus').style.color = surplus >= 0 ? 'var(--color-deep-teal)' : '#c62828';
+    }
+
+    // 2. Irregular Income Calc
+    function runIrregularCalc() {
+      const m1 = parseFloat(document.getElementById('irr_m1').value) || 0;
+      const m2 = parseFloat(document.getElementById('irr_m2').value) || 0;
+      const m3 = parseFloat(document.getElementById('irr_m3').value) || 0;
+      const ess = parseFloat(document.getElementById('irr_essentials').value) || 0;
+
+      const avg = (m1 + m2 + m3) / 3;
+      const low = Math.min(m1, m2, m3);
+      const gap = low - ess;
+
+      document.getElementById('irr_res_avg').innerText = fmtINR(avg);
+      document.getElementById('irr_res_low').innerText = fmtINR(low);
+      document.getElementById('irr_res_gap').innerText = (gap >= 0 ? '+' : '') + fmtINR(gap);
+      
+      const noteEl = document.getElementById('irr_res_note');
+      if (gap < 0) {
+        noteEl.innerText = currentLang === 'en' 
+          ? "⚠️ Warning: In your lowest month, your earnings do not cover bare essentials. Maintain a buffer account."
+          : "⚠️ ಎಚ್ಚರಿಕೆ: ಕನಿಷ್ಠ ಆದಾಯದ ತಿಂಗಳಲ್ಲಿ ಅಗತ್ಯ ವೆಚ್ಚಗಳನ್ನು ಭರಿಸಲು ಹಣ ಸಾಲುವುದಿಲ್ಲ. ಬಫರ್ ನಿಧಿ ಇಟ್ಟುಕೊಳ್ಳಿ.";
+        noteEl.style.color = "#c62828";
+      } else {
+        noteEl.innerText = currentLang === 'en'
+          ? "✅ Safe: Even during lean months, essential living expenses remain covered."
+          : "✅ ಸುರಕ್ಷಿತ: ಕಡಿಮೆ ಆದಾಯದ ತಿಂಗಳಲ್ಲೂ ನಿಮ್ಮ ಅಗತ್ಯ ವೆಚ್ಚ ಸರಿದೂಗುತ್ತದೆ.";
+        noteEl.style.color = "var(--color-deep-teal)";
+      }
+    }
+
+    // 3. Emergency Fund Calc
+    function runEmergencyCalc() {
+      const exp = parseFloat(document.getElementById('ef_expenses').value) || 0;
+      const m = parseInt(document.getElementById('ef_months').value) || 6;
+      const cur = parseFloat(document.getElementById('ef_current').value) || 0;
+      const contrib = parseFloat(document.getElementById('ef_contrib').value) || 0;
+
+      const target = exp * m;
+      const shortfall = Math.max(0, target - cur);
+      const months = contrib > 0 ? Math.ceil(shortfall / contrib) : '∞';
+
+      document.getElementById('ef_res_target').innerText = fmtINR(target);
+      document.getElementById('ef_res_shortfall').innerText = fmtINR(shortfall);
+      document.getElementById('ef_res_time').innerText = months === '∞' ? 'Ongoing' : months + (currentLang === 'en' ? ' Months' : ' ತಿಂಗಳುಗಳು');
+    }
+
+    // 4. Loan EMI Calc (Reducing Balance)
+    function runEmiCalc() {
+      const p = parseFloat(document.getElementById('emi_principal').value) || 0;
+      const r = (parseFloat(document.getElementById('emi_rate').value) || 0) / 12 / 100;
+      const n = parseFloat(document.getElementById('emi_tenure').value) || 0;
+
+      let emi = 0;
+      if (p > 0 && n > 0) {
+        if (r === 0) {
+          emi = p / n;
+        } else {
+          emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        }
+      }
+      const totalRepay = emi * n;
+      const totalInt = totalRepay - p;
+
+      document.getElementById('emi_res_val').innerText = fmtINR(emi);
+      document.getElementById('emi_res_int').innerText = fmtINR(totalInt);
+      document.getElementById('emi_res_total').innerText = fmtINR(totalRepay);
+    }
+
+    // 5. Loan Compare Calc
+    function runCompareCalc() {
+      function getTotals(p, rateAnnual, n) {
+        const r = (rateAnnual / 12) / 100;
+        let emi = 0;
+        if (p > 0 && n > 0) {
+          emi = r === 0 ? p / n : (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        }
+        return emi * n;
+      }
+      const p1 = parseFloat(document.getElementById('cmp_p1').value) || 0;
+      const r1 = parseFloat(document.getElementById('cmp_r1').value) || 0;
+      const t1 = parseFloat(document.getElementById('cmp_t1').value) || 0;
+
+      const p2 = parseFloat(document.getElementById('cmp_p2').value) || 0;
+      const r2 = parseFloat(document.getElementById('cmp_r2').value) || 0;
+      const t2 = parseFloat(document.getElementById('cmp_t2').value) || 0;
+
+      const totA = getTotals(p1, r1, t1);
+      const totB = getTotals(p2, r2, t2);
+      const diff = Math.abs(totA - totB);
+
+      document.getElementById('cmp_res_a').innerText = fmtINR(totA);
+      document.getElementById('cmp_res_b').innerText = fmtINR(totB);
+      document.getElementById('cmp_res_diff').innerText = fmtINR(diff);
+    }
+
+    // 6. Compound Interest Calc
+    function runCompoundCalc() {
+      const p = parseFloat(document.getElementById('ci_principal').value) || 0;
+      const pmt = parseFloat(document.getElementById('ci_monthly').value) || 0;
+      const r = (parseFloat(document.getElementById('ci_rate').value) || 0) / 100 / 12;
+      const years = parseFloat(document.getElementById('ci_years').value) || 0;
+      const n = years * 12;
+
+      let balance = p;
+      let totalContrib = p;
+
+      for (let i = 0; i < n; i++) {
+        balance = balance * (1 + r) + pmt;
+        totalContrib += pmt;
+      }
+
+      const interest = Math.max(0, balance - totalContrib);
+      document.getElementById('ci_res_inv').innerText = fmtINR(totalContrib);
+      document.getElementById('ci_res_interest').innerText = fmtINR(interest);
+      document.getElementById('ci_res_total').innerText = fmtINR(balance);
+    }
+
+    // 7. Inflation Calc
+    function runInflationCalc() {
+      const cur = parseFloat(document.getElementById('inf_amount').value) || 0;
+      const r = (parseFloat(document.getElementById('inf_rate').value) || 0) / 100;
+      const t = parseFloat(document.getElementById('inf_years').value) || 0;
+
+      const futureCost = cur * Math.pow(1 + r, t);
+      const futurePurchasingPower = cur / Math.pow(1 + r, t);
+
+      document.getElementById('inf_res_future').innerText = fmtINR(futureCost);
+      document.getElementById('inf_res_power').innerText = fmtINR(futurePurchasingPower);
+    }
+
+    // 8. Goal Planner
+    function runGoalCalc() {
+      const target = parseFloat(document.getElementById('sg_target').value) || 0;
+      const cur = parseFloat(document.getElementById('sg_current').value) || 0;
+      const m = parseFloat(document.getElementById('sg_months').value) || 1;
+
+      const gap = Math.max(0, target - cur);
+      const monthly = m > 0 ? gap / m : 0;
+
+      document.getElementById('sg_res_gap').innerText = fmtINR(gap);
+      document.getElementById('sg_res_monthly').innerText = fmtINR(monthly) + ' / month';
+    }
+
+    // Quiz Interaction
+    function handleQuizAnswer(index) {
+      const feedback = document.getElementById('quizFeedback');
+      const buttons = document.querySelectorAll('.quiz-option-btn');
+      buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
+
+      if (index === 1) {
+        buttons[1].classList.add('correct');
+        feedback.style.display = 'block';
+        feedback.style.background = '#e8f5e9';
+        feedback.style.color = '#1b5e20';
+        feedback.innerText = currentLang === 'en'
+          ? "Correct! You NEVER enter a PIN to receive money. UPI PIN is exclusively used to deduct funds from your account."
+          : "ಸರಿಯಾದ ಉತ್ತರ! ಹಣ ಪಡೆಯಲು ಯುಪಿಐ ಪಿನ್ ಹಾಕುವ ಅಗತ್ಯವಿಲ್ಲ. ಪಿನ್ ನಮೂದಿಸಿದರೆ ನಿಮ್ಮ ಖಾತೆಯಿಂದ ಹಣ ಕಡಿತವಾಗುತ್ತದೆ.";
+      } else {
+        buttons[index].classList.add('incorrect');
+        feedback.style.display = 'block';
+        feedback.style.background = '#ffebee';
+        feedback.style.color = '#b71c1c';
+        feedback.innerText = currentLang === 'en'
+          ? "Incorrect. Be careful! Entering your UPI PIN will immediately transfer money out of your bank account."
+          : "ತಪ್ಪು! ಎಚ್ಚರವಿರಲಿ: ಯುಪಿಐ ಪಿನ್ ಹಾಕಿದರೆ ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಖಾತೆಯಿಂದ ಹಣ ಮತ್ತೊಬ್ಬರಿಗೆ ಹೋಗುತ್ತದೆ.";
+      }
+    }
+
+    // Run initial calculations
+    window.addEventListener('DOMContentLoaded', () => {
+      runBudgetCalc();
+      runIrregularCalc();
+      runEmergencyCalc();
+      runEmiCalc();
+      runCompareCalc();
+      runCompoundCalc();
+      runInflationCalc();
+      runGoalCalc();
+    });
+  </script>
+</body>
+</html>
